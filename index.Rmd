@@ -13,3 +13,12 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to conventions and whether or not the state turns to them when conventions are held there. I am also interested in looking at third party prevalence in America, such as where most people vote third party, what elections (national, gubernatorial, municipal) receive a bigger proportion of third party votes, and so on. Perhaps something even related to finance and politicians, where politicians choose to invest. Maybe something to do with federal spending and interest rates over time based on presidency and party. I am mainly concerned about how I will be able to formulate this as my skills in R are rudimentary, but I have no shortage of ideas as to what topics I would want to research and compile into a database.
+
+
+
+
+https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&page=dataset&min-year=2&max-year=0&filter=0&year=2021
+
+Does the size of government impact a nation's economic freedom? In this experiment, I plan to study how the sizes of governments influence a nation's ability to trade freely. My hypothesis is that a larger government, characterized by higher spending and greater regulatory control, will lead to more regulation on trade, and thus lower levels of economic freedom. This is grounded in the theory that larger governments often impose higher taxes and introduce more regulations which distort market functions, limit individual decision making, and reduce a nation's trade openness. Using data from the Fraser Institute on world economics, my explanatory variable will be variables such as size of government, which includes data regarding government consumption, subsidies, and state asset ownership. These indicators are scored on a scale from 0 to 10, 0 representing minimal government involvement and 10 maximum involvement. Other variables may include legal system efficiency, protection of property rights, and freedom to trade internationally, all of which may interact with government size to impact economic freedom. The dependent variable will be the overall economic freedom score, once again scaled from 0 to 10, 10 indicating the highest level of freedom. I expect to observe a negative correlation between government size and economic freedom.
+
+ 
