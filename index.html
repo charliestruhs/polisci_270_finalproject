@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["economicdata2021-2021 (1).xlsx","efotw-2024-master-index-data-for-researchers-iso (1).xlsx","Fraser_data****.numbers","Fraser_data****.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1547,7 +1547,49 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>I am interested in exploring data related to conventions and whether or not the state turns to them when conventions are held there. I am also interested in looking at third party prevalence in America, such as where most people vote third party, what elections (national, gubernatorial, municipal) receive a bigger proportion of third party votes, and so on. Perhaps something even related to finance and politicians, where politicians choose to invest. Maybe something to do with federal spending and interest rates over time based on presidency and party. I am mainly concerned about how I will be able to formulate this as my skills in R are rudimentary, but I have no shortage of ideas as to what topics I would want to research and compile into a database.</p>
 <p><a href="https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&amp;page=dataset&amp;min-year=2&amp;max-year=0&amp;filter=0&amp;year=2021" class="uri">https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&amp;page=dataset&amp;min-year=2&amp;max-year=0&amp;filter=0&amp;year=2021</a></p>
 <p>Does the size of government impact a nation’s economic freedom? In this experiment, I plan to study how the sizes of governments influence a nation’s ability to trade freely. My hypothesis is that a larger government, characterized by higher spending and greater regulatory control, will lead to more regulation on trade, and thus lower levels of economic freedom. This is grounded in the theory that larger governments often impose higher taxes and introduce more regulations which distort market functions, limit individual decision making, and reduce a nation’s trade openness. Using data from the Fraser Institute on world economics, my explanatory variable will be variables such as size of government, which includes data regarding government consumption, subsidies, and state asset ownership. These indicators are scored on a scale from 0 to 10, 0 representing minimal government involvement and 10 maximum involvement. Other variables may include legal system efficiency, protection of property rights, and freedom to trade internationally, all of which may interact with government size to impact economic freedom. The dependent variable will be the overall economic freedom score, once again scaled from 0 to 10, 10 indicating the highest level of freedom. I expect to observe a negative correlation between government size and economic freedom. More importantly, a positive correlation between government size and economic freedom would disprove my hypothesis.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Loading the data from Fraser Institute</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span></span>
+<span><span class='va'>Fraser_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"Fraser_data****.xlsx"</span><span class='op'>)</span></span>
+<span><span class='va'>Fraser_data</span></span></code></pre>
+</div>
+<pre><code># A tibble: 165 × 11
+    year ISO_Code countries              efi  rank quartile govt_size
+   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1  2021 AGO      Angola                5.17   151        4      7.65
+ 2  2021 ALB      Albania               7.58    30        1      7.71
+ 3  2021 ARE      United Arab Emirates  7.3     51        2      5.35
+ 4  2021 ARG      Argentina             4.55   160        4      6.24
+ 5  2021 ARM      Armenia               7.52    33        1      7.89
+ 6  2021 AUS      Australia             8        8        1      5.91
+ 7  2021 AUT      Austria               7.67    26        1      4.93
+ 8  2021 AZE      Azerbaijan            6.12   111        3      4.56
+ 9  2021 BDI      Burundi               5.43   141        4      6.69
+10  2021 BEL      Belgium               7.42    45        2      4.53
+# ℹ 155 more rows
+# ℹ 4 more variables: legal_rights &lt;dbl&gt;, sound_money &lt;dbl&gt;,
+#   intltrade_freedom &lt;dbl&gt;, regulation &lt;dbl&gt;</code></pre>
+</div>
+<p>Key:
+ISO Code &lt;- 3 letter country code
+countries &lt;- countries
+efi &lt;- Economic Freedom Indicator, measured on a scale from 1 (least free) to 10 (most free)
+rank &lt;- rank out of all countries</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fraser_data</span> <span class='op'>|&gt;</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>govt_size</span>, y <span class='op'>=</span> <span class='va'>efi</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"forestgreen"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Government Size vs. Economic Freedom Index"</span>,</span>
+<span>       x <span class='op'>=</span> <span class='st'>"Government Size"</span>, </span>
+<span>      y <span class='op'>=</span> <span class='st'>"Economic Freedom Index"</span>,</span>
+<span>      subtitle <span class='op'>=</span> <span class='st'>"Source: Fraser Institute"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
