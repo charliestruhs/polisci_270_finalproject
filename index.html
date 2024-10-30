@@ -1572,11 +1572,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 # ℹ 4 more variables: legal_rights &lt;dbl&gt;, sound_money &lt;dbl&gt;,
 #   intltrade_freedom &lt;dbl&gt;, regulation &lt;dbl&gt;</code></pre>
 </div>
-<p>Key:
-ISO Code &lt;- 3 letter country code
-countries &lt;- countries
-efi &lt;- Economic Freedom Indicator, measured on a scale from 1 (least free) to 10 (most free)
-rank &lt;- rank out of all countries</p>
+<p>Key:</p>
+<p>ISO Code &lt;- 3 letter country code</p>
+<p>countries &lt;- countries</p>
+<p>efi &lt;- Economic Freedom Index, measured on a scale from 0 (least free) to 10 (most free)</p>
+<p>rank &lt;- rank out of all countries, 0 being highest efi, 165 being lowest</p>
+<p>quartile &lt;- 165 countries separated into quartiles, 0 being the highest quartile to 4 being the lowest quartile</p>
+<p>govt_size &lt;- size of government, 0 being smallest and 10 being largest</p>
+<p>legal_rights &lt;- legal rights, 0 being lowest to 10 being largest</p>
+<p>sound_money &lt;- sound currency indicator, 0 being not sound to 10 being most sound</p>
+<p>intltrade_freedom &lt;- Freedom to Trade internationally, 0 being low freedom to 10 being high freedom</p>
+<p>regulation &lt;- government regulation, 0 being regulations that deter entry into business, 10 being regulations that promote entry to business</p>
+<p>If you would like more details regarding the Fraser Institute’s approach, please click here :</p>
+<p><a href="https://www.fraserinstitute.org/economic-freedom/approach" class="uri">https://www.fraserinstitute.org/economic-freedom/approach</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fraser_data</span> <span class='op'>|&gt;</span></span>

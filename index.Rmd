@@ -31,10 +31,32 @@ Fraser_data <- read_excel("Fraser_data****.xlsx")
 Fraser_data
 ```
 Key:
+
 ISO Code <- 3 letter country code
+
 countries <- countries
-efi <- Economic Freedom Indicator, measured on a scale from 1 (least free) to 10 (most free)
-rank <- rank out of all countries
+
+efi <- Economic Freedom Index, measured on a scale from 0 (least free) to 10 (most free)
+
+rank <- rank out of all countries, 0 being highest efi, 165 being lowest
+
+quartile <- 165 countries separated into quartiles, 0 being the highest quartile to 4 being the lowest quartile
+
+govt_size <- size of government, 0 being smallest and 10 being largest
+
+legal_rights <- legal rights, 0 being lowest to 10 being largest
+
+sound_money <- sound currency indicator, 0 being not sound to 10 being most sound
+
+intltrade_freedom <- Freedom to Trade internationally, 0 being low freedom to 10 being high freedom
+
+regulation <- government regulation, 0 being regulations that deter entry into business, 10 being regulations that promote entry to business
+
+If you would like more details regarding the Fraser Institute's approach, please click here :
+
+https://www.fraserinstitute.org/economic-freedom/approach
+
+
  
 ```{r}
 Fraser_data |>
