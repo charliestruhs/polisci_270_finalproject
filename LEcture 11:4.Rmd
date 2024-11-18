@@ -1,0 +1,99 @@
+---
+title: "Lecture 11/4"
+author: "Charlie Struhs"
+date: "2024-11-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Election Polls 2024
+```{r}
+library(tidyverse)
+```
+
+load data
+```{r, error = TRUE}
+polls2024 <- read_csv("president_polls.csv")
+```
+first need to set the working directory
+
+```{r}
+setwd("/Users/charliestruhs/Desktop/Wisconsin Files")
+getwd()
+```
+
+```{r}
+polls2024 <- read_csv("president_polls.csv")
+View(polls2024)
+```
+lets take a look at answer column
+
+```{r}
+polls2024 |>
+  count(answer) |>
+  arrange(desc(n))
+```
+
+restricting to Trump v. Harris
+
+
+```{r}
+polls_2024 <- polls2024 |>
+  filter(answer == "Trump" | answer == "Harris")
+polls_2024
+```
+
+```{r}
+polls2024 <- polls2024 |>
+  mutate(
+    election_date = as.Date(election_date, format = "%m/%d/%y"),
+    end_date = as.Date(end_date,format = "%m/%d/%y"),
+    days_before = election_date - end_date)
+  
+```
+
+```{r}
+polls2024 <- polls2024 |>
+  select(poll_id:population_full, answer, pct, days_before) |>
+polls2024
+```
+
+```{r}
+polls2024.wide <- polls2024 |>
+  pivot_wider(names_from = answer,
+              values_from = pct)
+polls2024.wide
+```
+
+Lets remove the empty trump row
+```{r}
+polls2024.wide <- polls2024.wide |> 
+  filter(!is.na(Trump))
+```
+
+Overall percentage
+
+```{r}
+polls2024.wide |>
+  summarize(Harris_pct = mean(Harris),
+            Trump_pct = mean(Trump))
+```
+```{r}
+polls.state <- polls2024.wide |>
+  group_by(state) |>
+  summarize(Harris_pct = mean(Harris),
+            Trump_pct = mean(Trump)) |>
+  mutate(margin = Trump_pct - Harris_pct)
+polls.state
+```
+
+```{r}
+polls.state |>
+  filter(state %in% c("Arizona", "Georgia","Michigan", "Nevada", "North Carolina", "Pennsylvania", "Wisconsin"))
+```
+
