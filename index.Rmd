@@ -12,6 +12,8 @@ Research Question and Main Hypothesis
 
 
 Does the size of government impact a nation's economic freedom? In this experiment, I plan to study how the sizes of governments influence a nation's ability to trade freely and exercise economic freedom. My hypothesis is that larger governments-characterized by higher spending and greater regulatory control-will lead to more regulation on trade, leading to lower levels of economic freedom. This is rooted in the theory that larger governments often impose higher taxes and implement extensive regulations to increase government revenue, which distorts market functions, limits individual decision making, and reduces a nation's trade openness. 
+
+
 Using data from the Fraser Institute on world economics (linked below), my explanatory variable will be the variable "size of government", which encompasses government consumption, subsidies, and state asset ownership. These indicators are scored on a scale from 0 to 10, 0 representing minimal government involvement and 10 maximum involvement. The dependent variable will be the overall economic freedom score, once again scaled from 0 to 10, 10 indicating the highest level of freedom. I expect to observe a negative correlation between government size and economic freedom. That is, a larger government will have a lower economic freedom score. Conversely, a positive correlation between government size and economic freedom would disprove my hypothesis, meaning a larger government would have a higher economic freedom score. 
 
 https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&page=dataset&min-year=2&max-year=0&filter=0&year=2021
@@ -54,7 +56,7 @@ https://www.fraserinstitute.org/economic-freedom/approach
 
  
 ```{r}
-Fraser_data |>
+gs_efi_plot <- Fraser_data |>
 ggplot(mapping = aes(x = govt_size, y = efi))+
        geom_point(color = "forestgreen", alpha = 0.6)+
   geom_smooth(color = "indianred") +
@@ -63,16 +65,17 @@ ggplot(mapping = aes(x = govt_size, y = efi))+
       y = "Economic Freedom Index",
       subtitle = "Source: Fraser Institute") +
   theme_minimal()
-
+gs_efi_plot
+  cor(Fraser_data$efi, Fraser_data$govt_size, use = "pairwise")
 ```
 Analysis
 
-It appears that as the government size increases in the initial stages, economic freedom is seen to increase at the fastest rate. Around the freedom rankings 6 and 7 there is a slight drop, then an increase, then finally a slow decrease as the government size approaches 10. Most results seem to be clustered between the rankings of 6 and 7. at the ranking of 6.5, the approximated efi by the geom_smooth() line is a little under 6.5.the nation with the highest efi, Hong Kong, has a government size of 7.99. Overall, the relationship between government size and EFI is hard to state. One could draw the conclusion that a lack or excessive amount of government size deters economic freedom in general. 
+It appears that as the government size increases in the initial stages, economic freedom is seen to increase at the fastest rate. Around the freedom rankings 6 and 7 there is a slight drop, then an increase, then finally a slow decrease as the government size approaches 10. Most results seem to be clustered between the rankings of 6 and 7. at the ranking of 6.5, the approximated efi by the geom_smooth() line is a little under 6.5.the nation with the highest efi, Hong Kong, has a government size of 7.99. The correlation value is 0.071, indicating a very weak, positive relationship between government size and economic freedom. Overall, the relationship between government size and EFI is hard to state. One could draw the conclusion that a lack or excessive amount of government size deters economic freedom in general. 
 
 As an alternative approach, we can shift focus from government size to the regulation variable as the explanatory variable for the EFI.A higher score in government regulation indicates low barriers to entry, ability for corporations to determine wages, and the extent to which the banking industry is privately controlled. Examining government oversight on economic activity may give insight on excessive regulation and its ability to reduce competition and deter business entry, contributing to a lower EFI score.
 
 ```{r}
-Fraser_data |>
+reg_efi_plot <- Fraser_data |>
 ggplot(mapping = aes(x = regulation, y = efi))+
        geom_point(color = "forestgreen", alpha = 0.6)+
   geom_smooth(color = "indianred") +
@@ -81,6 +84,8 @@ ggplot(mapping = aes(x = regulation, y = efi))+
       y = "Economic Freedom Index",
       subtitle = "Source: Fraser Institute") +
   theme_minimal()
+reg_efi_plot
+ cor(Fraser_data$efi, Fraser_data$regulation, use = "pairwise")
 
 ```
-The relationship here appears much clearer. The analysis reveals a positive correlation between government regulation and the EFI, indicating that higher scores in government regulation are associated with greater economic freedom. This leads us to suggest that well designed regulatory measures may, in fact, enhance economic freedom by reducing barriers and increasing market transparency. This is contraty to the common assumption that regulation restricts economic freedom. Nations with higher regulation scores likely implement policies that enable free market activity rather than hinder it. 
+The relationship here appears much clearer. The analysis reveals a strong positive correlation (a value of 0.897) between government regulation and the EFI, indicating that higher scores in government regulation are associated with greater economic freedom. This leads us to suggest that well designed regulatory measures may, in fact, enhance economic freedom by reducing barriers and increasing market transparency. This is contraty to the common assumption that regulation restricts economic freedom. Nations with higher regulation scores likely implement policies that enable free market activity rather than hinder it. 
