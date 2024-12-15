@@ -22,7 +22,7 @@ https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&page=data
 
 Data
 
-The data used in the analysis comes from the Fraser Institute on World Economics. Researchers at the Institute assign a score from 0-10 under 5 different categories: Size of government, legal system and security of property rights, sound money, freedom to trade internationally, and regulation. The dependent variable is the composite measure of economic freedom,the Economic Freedom Index, encompassing aspects of trade openness, property rights, and monetary policy. The independent variable is government size, which is measured through aspects such as government expenditures and taxes. Along with this, the regulation variable, which I will also test as an independent variable, assesses financial regulations and competition laws. A higher score on regulation 
+The data used in the analysis comes from the Fraser Institute on World Economics. Researchers at the Institute assign a score from 0-10 under 5 different categories: Size of government, legal system and security of property rights, sound money, freedom to trade internationally, and regulation. The dependent variable is the composite measure of economic freedom,the Economic Freedom Index, encompassing aspects of trade openness, property rights, and monetary policy. The independent variable is government size, which is measured through aspects such as government expenditures and taxes. Along with this, the regulation variable, which I will also test as an independent variable, assesses financial regulations and competition laws. The data was imported from an excel file and was edited in the file to show up nicely in Rstudio. One limitation, however, is the absence of some sub-saharan and asian countries that could provide a better glimpse into the economies of lesser developed nations. 
 
 Data will be measured through a scatter plot model and a correlation will be derived. The data is cross sectional and analyzes countries at one point in time. Through two scatter plots comparing independent variables government size and regulation to the efi,  I hope to observe a strong negative correlation between government size and economic freedom, as this would prove my hypothesis, and a strong positive correlation between regulation and economic freedom. In this case, a strong negative correlation contains values of -0.75 or lower, while a strong positive correlation contains values of 0.75 or higher. between these values represents an insignificant correlation or weaker result.
 
@@ -64,7 +64,10 @@ If you would like more details regarding the Fraser Institute's approach, please
 https://www.fraserinstitute.org/economic-freedom/approach
 
 
- Plotting data on a graph and calculating a correlation for government size and efi
+
+Plotting data on a graph and calculating a correlation for government size and efi
+
+
 ```{r}
 gs_efi_plot <- Fraser_data |>
 ggplot(mapping = aes(x = govt_size, y = efi))+
@@ -87,6 +90,8 @@ As an alternative approach, we can shift focus from government size to the regul
 
 
 Plotting data on a graph and calculating a correlation for government regulation and efi
+
+
 ```{r}
 reg_efi_plot <- Fraser_data |>
 ggplot(mapping = aes(x = regulation, y = efi))+
@@ -109,4 +114,4 @@ Conclusion
 
 Based on the findings, I reject my initial hypothesis that a larger sized government leads to a lack of economic freedom due to its insignificant correlation result. However, I maintain that regulatory controls do impact a nation's economic freedom seen by the strong positive correlation which proves my hypothesis in graph 2. My first explanatory variable showed that the size of a government does not necessarily indicate a nation's economic freedom. Rather, regulatory controls like price setting capabilities, presence of private banks and financial services, and laws supporting market competition are far more important. Limitations of the analysis include the cross-sectional nature of the data, meaning change over time is ignored in this study. Along with this, specific middle eastern and sub-saharan countries are ignored in the data, which could provide a stronger insight on economic freedom and perhaps regional variations in the data. Improvements to this study include collecting longitudinal data and comparing nation's scores over a period of time in the specific categories, in order to see economic freedom as ever changing rather than a static variable. 
 
-Because I am measuring a population and do not require a random sample and hypothesis test generation, I am confident in the results of the correlation calculation as well as the graph data. However, were we to only have a sample of the data, a hypothesis test could be run to calculate the population value. In this case, all the data is here and a hypothesis test on the sum of the data would not be useful and simply wrong to perform on this study. 
+Because I am measuring a population and do not require a random sample and hypothesis test generation, I am confident in the results of the correlation calculation as well as the graph data. A hypothesis test is unnecessary in this case because the parameters are known and we are not estimating from a sample. Nevertheless, our correlation values should not be interpreted causally. Further analysis, such as more controlled experiments, are necessary. Because the government size and regulation variables are hard to isolate and somewhat subjective, the correlation values show a strong relationship but should not be interpreted causally. 
